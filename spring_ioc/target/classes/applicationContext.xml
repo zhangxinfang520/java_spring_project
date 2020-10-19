@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+   <bean id="user01" class="com.zxf.Bean.User">
+      <property name="name" value="张鑫方"></property>
+      <property name="adress" value="中南财经政法大学"></property>
+   </bean>
+   <bean id="user02" class="com.zxf.Bean.User">
+      <property name="name" value="张鑫方"></property>
+      <property name="adress" value="中南财经政法大学"></property>
+   </bean>
+<!--   <bean id="userDao" class="com.zxf.dao.impl.UserDaoImpl" scope="singleton" init-method="init" destroy-method="destory"></bean>  &lt;!&ndash; 一个  加载配置文件的时候创建&ndash;&gt;-->
+   <bean id="userDao" class="com.zxf.dao.impl.UserDaoImpl">
+      <!--集合参数构造-->
+      <property name="strList">
+         <list>
+            <!--里面为普通的String字符串-->
+            <value>aaa</value>
+            <value>bbb</value>
+            <value>cccc</value>
+         </list>
+      </property>
+      <property name="userMap">
+         <map>
+            <entry key="1" value-ref="user01"></entry>
+            <entry key="2" value-ref="user02"></entry>
+         </map>
+      </property>
+      <property name="properties">
+         <props>
+            <prop key="p1">122</prop>
+            <prop key="p2">123</prop>
+            <prop key="p3">2</prop>
+         </props>
+      </property>
+      <!-- 普通参数构造-->
+<!--      <property name="username" value="张鑫方" ></property>-->
+<!--      <property name="age" value="22"></property>-->
+   </bean>
+<!--    <bean id="userDao" class="com.zxf.dao.impl.UserDaoImpl" scope="prototype"></bean>  多个 getBean的时候创建-->
+<!--   <bean id="userService" class="com.zxf.service.impl.UserServiceImpl">-->
+<!--      <property name="Userdao" ref="userDao"></property>-->
+<!--   </bean>-->
+   <!--通过有参构造来注入 name构造内部的参数名 ref容器id-->
+<!--   <bean id="UserService" class="com.zxf.service.impl.UserServiceImpl">-->
+<!--      <constructor-arg name="userDao" ref="userDao"/>-->
+<!--   </bean>-->
+</beans>
